@@ -13,6 +13,7 @@ const app = new Vue({
       .get("https://flynn.boolean.careers/exercises/api/array/music")
       .then((res) => {
         this.albums = res.data.response;
+        this.albums.sort((a, b) => a.year - b.year);
         console.log(this.albums[0]);
       });
   },
