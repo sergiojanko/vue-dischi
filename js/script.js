@@ -6,6 +6,8 @@ const app = new Vue({
   el: '#app',
   data: {
     albums: [],
+    genres: [],
+    filter: "",
   },
   methods: {},
   created() {
@@ -14,7 +16,11 @@ const app = new Vue({
       .then((res) => {
         this.albums = res.data.response;
         this.albums.sort((a, b) => a.year - b.year);
-        console.log(this.albums[0]);
+        this.albums.forEach((album) => {
+          if (!this.genres.includes(album.genre)) {
+            this.genres.push(album.genre);
+          }
+        });
       });
   },
 });

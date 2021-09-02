@@ -15,10 +15,20 @@
         <div class="container">
           <img src="images/logo.png" />
         </div>
+        <select name="genre" id="genre-select" v-model="filter">
+          <option selcted value="">All</option>
+          <option v-for="(genre, index) in genres" :value="genre">
+            {{genre}}
+          </option>
+        </select>
       </header>
       <main class="container">
         <section id="album-container">
-          <div class="card" v-for="album in albums">
+          <div
+            class="card"
+            v-for="album in albums"
+            v-if="album.genre.includes(filter)"
+          >
             <img :src="album.poster" alt="New Jersey" />
             <h2 class="title">{{album.title}}</h2>
             <address class="author">{{album.author}}</address>
@@ -27,12 +37,6 @@
         </section>
       </main>
     </div>
-
-    <select name="" id="">
-      <option>All</option>
-      <option>Pop</option>
-      <option>Pop</option>
-    </select>
 
     <script src="js/script.js"></script>
   </body>
